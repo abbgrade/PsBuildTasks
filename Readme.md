@@ -2,7 +2,7 @@
 
 This provides general purpose [InvokeBuild tasks](https://github.com/nightroman/Invoke-Build) for Powershell.
 
-It provides the following commands:
+It provides the following tasks:
 
 - Build *<- creates the module and documentation/help. The help is based on [platyPS](https://github.com/PowerShell/platyPS)*
 - Clean *<- removes temporary files*
