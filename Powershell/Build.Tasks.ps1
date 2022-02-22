@@ -31,11 +31,17 @@ task PreparePublishDirectory -If ( -Not ( Test-Path $PublishDirectory )) -Jobs {
 	New-Item -Path $PublishDirectory -ItemType Directory | Out-Null
 }
 
+# Synopsis: Set the prerelease in the manifest based on the build number.
+task SetPrerelease -If $BuildNumber {
+	$Global:PreRelease = "alpha$( '{0:d4}' -f $BuildNumber )"
+	Update-ModuleManifest -Path $Global:Manifest -Prerelease $Global:PreRelease
+}
+
 # Synopsis: Build the module.
 task Build -Jobs Doc.Update, PreparePublishDirectory, {
 	Copy-Item -Path $SourceDirectory -Destination $ModulePublishDirectory -Recurse
     [System.IO.FileInfo] $Global:Manifest = "$ModulePublishDirectory\$ModuleName.psd1"
-}
+}, SetPrerelease
 
 # Synopsis: Install the module.
 task Install -Jobs Build, {
