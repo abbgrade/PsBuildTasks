@@ -38,7 +38,7 @@ task SetPrerelease -If $BuildNumber {
 }
 
 # Synopsis: Build the module.
-task Build -Jobs Doc.Update, PreparePublishDirectory, {
+task Build -Jobs Clean, Doc.Update, PreparePublishDirectory, {
 	Copy-Item -Path $SourceDirectory -Destination $ModulePublishDirectory -Recurse
     [System.IO.FileInfo] $Global:Manifest = "$ModulePublishDirectory\$ModuleName.psd1"
 }, SetPrerelease
