@@ -1,6 +1,13 @@
 # PsBuildTasks
 
-This provides general purpose [InvokeBuild tasks](https://github.com/nightroman/Invoke-Build) for Powershell.
+This provides reusable sources for build, test, release automation of PowerShell modules, written in DotNet (C#) or PowerShell.
+
+This includes:
+
+- [InvokeBuild](https://github.com/nightroman/Invoke-Build) tasks.
+- [GitHub Actions](https://docs.github.com/en/actions) workflows.
+
+## InvokeBuild Tasks
 
 It provides the following tasks:
 
@@ -9,12 +16,12 @@ It provides the following tasks:
 - Install *<- installs the modules to the default powershell module path*
 - Publish *<- publishes the module to PowerShellGallery*
 
-## Usage
+### Usage
 
 - Add one of the following tasks to your `.build` file.
 - It requires the `$ModuleName` variable to be set.
 
-### DotNet Modules
+#### DotNet Modules
 
 - It requires the `$Configuration` variable to be set.
 - It expects a `src` directory, that contains the manifest file.
@@ -23,13 +30,13 @@ It provides the following tasks:
 
 ```powershell
 task UpdateBuildTasks {
-	Invoke-WebRequest `
-		-Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/DotNet/Build.Tasks.ps1' `
-		-OutFile "$PSScriptRoot\tasks\Build.Tasks.ps1"
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/DotNet/Build.Tasks.ps1' `
+        -OutFile "$PSScriptRoot\tasks\Build.Tasks.ps1"
 }
 ```
 
-### Powershell
+#### Powershell
 
 - It expects a `Source` directory, that contains the manifest file.
 - The module will be build to the `Publish` directory.
@@ -37,8 +44,29 @@ task UpdateBuildTasks {
 
 ```powershell
 task UpdateBuildTasks {
-	Invoke-WebRequest `
-		-Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/Powershell/Build.Tasks.ps1' `
-		-OutFile "$PSScriptRoot\Tasks\Build.Tasks.ps1"
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/Powershell/Build.Tasks.ps1' `
+        -OutFile "$PSScriptRoot\Tasks\Build.Tasks.ps1"
+}
+```
+
+## GitHub Actions workflows
+
+It provides the following workflows:
+
+- build-validation *<- builds the project using the `Build` task, runs [Pester](https://github.com/pester/Pester) tests and uploads the test results.*
+
+### Usage
+
+- It expects a `InstallBuildDependencies` task which installs modules, required to build the module.
+- It expects a `Build` that builds the module into the `publish` directory.
+- It expects a `InstallTestDependencies` task which installs modules, required to test the module.
+- It expects Pester tests in the `test` directory.
+
+```powershell
+task UpdateValidationWorkflow {
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/GitHub/build-validation.yml' `
+        -OutFile "$PSScriptRoot\.github\workflows\build-validation.yml"
 }
 ```
