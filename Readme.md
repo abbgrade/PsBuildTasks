@@ -59,6 +59,8 @@ task UpdateBuildTasks {
 It provides the following workflows:
 
 - build-validation *<- builds the project using the `Build` task, runs [Pester](https://github.com/pester/Pester) as matrix and uploads the test results.*
+- pre-release *<- builds the project and publishes it to PowerShell Gallery as prerelease.*
+- release *<- builds the project and publishes it to PowerShell Gallery.*
 
 ### Usage
 
@@ -66,6 +68,9 @@ It provides the following workflows:
 - It expects a `Build` that builds the module into the `publish` directory.
 - It expects a `InstallTestDependencies` task which installs modules, required to test the module.
 - It expects Pester tests in the `test` directory.
+- It expects a `InstallReleaseDependencies` task which installs modules, required to import/publish the module.
+
+#### Build Validation Workflow
 
 Add the following task to your `.build.ps1` file to create/update your workflow.
 
@@ -76,3 +81,33 @@ task UpdateValidationWorkflow {
         -OutFile "$PSScriptRoot\.github\workflows\build-validation.yml"
 }
 ```
+
+#### Pre-Release  Workflow
+
+1. Execute the following snippet to initialize or update the pre-release workflow:
+
+```powershell
+task UpdatePreReleaseWorkflow {
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/GitHub/pre-release-windows.yml' `
+        -OutFile "$PSScriptRoot\.github\workflows\pre-release.yml"
+}
+```
+
+2. Update the `module-name` input in the workflow.
+3. Configure the repository secret `PS_GALLERY_KEY` with a [PowerShell Gallery API key](https://docs.microsoft.com/en-us/powershell/scripting/gallery/how-to/managing-profile/creating-apikeys).
+
+#### Release  Workflow
+
+1. Execute the following snippet to initialize or update the release workflow:
+
+```powershell
+task UpdateReleaseWorkflow {
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/GitHub/release-windows.yml' `
+        -OutFile "$PSScriptRoot\.github\workflows\release.yml"
+}
+```
+
+2. Update the `module-name` input in the workflow.
+3. Configure the repository secret `PS_GALLERY_KEY` with a [PowerShell Gallery API key](https://docs.microsoft.com/en-us/powershell/scripting/gallery/how-to/managing-profile/creating-apikeys).
