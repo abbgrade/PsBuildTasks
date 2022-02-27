@@ -1,6 +1,6 @@
 # PsBuildTasks
 
-This provides reusable sources for build, test, release automation of PowerShell modules, written in DotNet (C#) or PowerShell.
+This provides reusable sources for build, test, release automation of PowerShell modules, written in DotNet/C# or PowerShell.
 
 This includes:
 
@@ -28,6 +28,8 @@ It provides the following tasks:
 - The module will be build to the `publish` directory.
 - The documentation will be created in the `docs` directory.
 
+Add the following task to your `.build.ps1` file to create/update your build tasks.
+
 ```powershell
 task UpdateBuildTasks {
     Invoke-WebRequest `
@@ -41,6 +43,8 @@ task UpdateBuildTasks {
 - It expects a `Source` directory, that contains the manifest file.
 - The module will be build to the `Publish` directory.
 - The documentation will be created in the `Docs` directory.
+
+Add the following task to your `.build.ps1` file to create/update your build tasks.
 
 ```powershell
 task UpdateBuildTasks {
@@ -62,6 +66,8 @@ It provides the following workflows:
 - It expects a `Build` that builds the module into the `publish` directory.
 - It expects a `InstallTestDependencies` task which installs modules, required to test the module.
 - It expects Pester tests in the `test` directory.
+
+Add the following task to your `.build.ps1` file to create/update your workflow.
 
 ```powershell
 task UpdateValidationWorkflow {
