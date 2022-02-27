@@ -59,7 +59,9 @@ jobs:
             'Run.Path' = 'test'
             'Run.Exit' = $true
             'TestResult.Enabled' = $true
+            'TestResult.OutputPath' = 'testResults.xml'
             'CodeCoverage.Enabled' = $true
+            'CodeCoverage.OutputPath' = 'coverage.xml'
           }
           Invoke-Pester -Configuration $config
 
