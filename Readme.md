@@ -58,7 +58,7 @@ task UpdateBuildTasks {
 
 It provides the following workflows:
 
-- build-validation *<- builds the project using the `Build` task, runs [Pester](https://github.com/pester/Pester) tests and uploads the test results.*
+- build-validation *<- builds the project using the `Build` task, runs [Pester](https://github.com/pester/Pester) as matrix and uploads the test results.*
 
 ### Usage
 
@@ -72,7 +72,7 @@ Add the following task to your `.build.ps1` file to create/update your workflow.
 ```powershell
 task UpdateValidationWorkflow {
     Invoke-WebRequest `
-        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/GitHub/build-validation.yml' `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/GitHub/build-validation-matrix.yml' `
         -OutFile "$PSScriptRoot\.github\workflows\build-validation.yml"
 }
 ```
