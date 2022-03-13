@@ -62,6 +62,8 @@ It provides the following workflows:
 - pre-release *<- builds the project and publishes it to PowerShell Gallery as prerelease.*
 - release *<- builds the project and publishes it to PowerShell Gallery.*
 
+It depends on a convention for branch names. These are based on the default settings of the [git-flow](https://github.com/nvie/gitflow) git extension.
+
 ### Usage
 
 - It expects a `InstallBuildDependencies` task which installs modules, required to build the module.
