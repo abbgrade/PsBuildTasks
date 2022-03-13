@@ -126,8 +126,8 @@ It provides tasks for the corresponding InvokeBuild Tasks.
 ```powershell
 task UpdateVsCodeTasks {
     Invoke-WebRequest `
-        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/.vscode\tasks.json' `
-        -OutFile "$PSScriptRoot\VsCode\tasks.json"
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/VsCode\tasks.json' `
+        -OutFile "$PSScriptRoot\.vscode\tasks.json"
 }
 ```
 
