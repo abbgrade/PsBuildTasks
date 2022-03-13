@@ -113,3 +113,11 @@ task UpdateReleaseWorkflow {
 
 2. Update the `module-name` input in the workflow.
 3. Configure the repository secret `PS_GALLERY_KEY` with a [PowerShell Gallery API key](https://docs.microsoft.com/en-us/powershell/scripting/gallery/how-to/managing-profile/creating-apikeys).
+
+## Container Tasks
+
+To update all build tasks add and use the following task:
+
+```powershell
+task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateValidationWorkflow, UpdatePreReleaseWorkflow, UpdateReleaseWorkflow
+```
