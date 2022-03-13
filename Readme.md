@@ -114,6 +114,23 @@ task UpdateReleaseWorkflow {
 2. Update the `module-name` input in the workflow.
 3. Configure the repository secret `PS_GALLERY_KEY` with a [PowerShell Gallery API key](https://docs.microsoft.com/en-us/powershell/scripting/gallery/how-to/managing-profile/creating-apikeys).
 
+## VSCode Tasks
+
+It provides tasks for the corresponding InvokeBuild Tasks.
+
+### Usage
+
+- Add the following task to your `.build.ps1` file to create/update your vscode tasks.
+- It expects the InvokeBuild Tasks tasks to be set up.
+
+```powershell
+task UpdateVsCodeTasks {
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/.vscode\tasks.json' `
+        -OutFile "$PSScriptRoot\VsCode\tasks.json"
+}
+```
+
 ## Container Tasks
 
 To update all build tasks add and use the following task:
