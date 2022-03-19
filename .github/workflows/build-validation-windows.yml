@@ -58,6 +58,7 @@ jobs:
           include_paths: test
           report_name: module_tests
           report_title: Module Tests
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
     #   - name: Run tests
     #     shell: pwsh
