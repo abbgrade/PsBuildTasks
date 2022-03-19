@@ -52,27 +52,10 @@ jobs:
           Install-Module InvokeBuild -ErrorAction Stop
           Invoke-Build InstallTestDependencies
 
-      - name: Run tests
-        shell: pwsh
-        run: |
-          $config = New-PesterConfiguration @{
-            'Run.Path' = 'test'
-            'Run.Exit' = $true
-            'TestResult.Enabled' = $true
-            'TestResult.OutputPath' = 'testResults.xml'
-            'CodeCoverage.Enabled' = $true
-            'CodeCoverage.OutputPath' = 'coverage.xml'
-          }
-          Invoke-Pester -Configuration $config
-
-      - name: Upload test results
-        uses: actions/upload-artifact@v2
+      - name: Test module
+        uses: zyborg/pester-tests-report@v1
         with:
-          name: ${{ matrix.os }}-test-results
-          path: testResults.xml
-
-      - name: Upload test coverage
-        uses: actions/upload-artifact@v2
-        with:
-          name: ${{ matrix.os }}-test-coverage
-          path: coverage.xml
+          include_paths: test
+          report_name: test-report
+          report_title: Module Tests
+          github_token: ${{ secrets.GITHUB_TOKEN }}
