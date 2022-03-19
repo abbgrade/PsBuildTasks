@@ -58,7 +58,7 @@ task UpdateBuildTasks {
 
 It provides the following workflows:
 
-- build-validation *<- builds the project using the `Build` task, runs [Pester](https://github.com/pester/Pester) as matrix and uploads the test results.*
+- build-validation *<- builds the project using the `Build` task, runs [Pester](https://github.com/pester/Pester) as matrix and creates a [test report](https://github.com/zyborg/pester-tests-report).*
 - pre-release *<- builds the project and publishes it to PowerShell Gallery as prerelease.*
 - release *<- builds the project and publishes it to PowerShell Gallery.*
 
@@ -138,3 +138,7 @@ To update all build tasks add and use the following task:
 ```powershell
 task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateValidationWorkflow, UpdatePreReleaseWorkflow, UpdateReleaseWorkflow
 ```
+
+## Changelog
+
+See the [changelog](./CHANGELOG.md) file.
