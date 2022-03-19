@@ -59,3 +59,4 @@ jobs:
           report_name: test-report
           report_title: Module Tests
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          tests_fail_step: true
