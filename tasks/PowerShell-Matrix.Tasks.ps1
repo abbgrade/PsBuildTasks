@@ -28,6 +28,15 @@ task UpdateReleaseWorkflow {
 }
 
 #endregion
+#region GitHub Pages
+
+task UpdateIndexPage {
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/docs/index.md' `
+        -OutFile "$PSScriptRoot\docs\index.md"
+}
+
+#endregion
 #region VsCode
 
 task UpdateVsCodeTasks {
@@ -47,4 +56,4 @@ task UpdatePsBuildTasksTasks {
 
 #endregion
 
-task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateValidationWorkflow, UpdatePreReleaseWorkflow, UpdateReleaseWorkflow, UpdateVsCodeTasks, UpdatePsBuildTasksTasks
+task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateValidationWorkflow, UpdatePreReleaseWorkflow, UpdateIndexPage, UpdateReleaseWorkflow, UpdateVsCodeTasks, UpdatePsBuildTasksTasks
