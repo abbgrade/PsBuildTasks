@@ -24,8 +24,14 @@ task UpdateReleaseWorkflow {
 
 task UpdateVsCodeTasks {
     Invoke-WebRequest `
-        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/VsCode\tasks.json' `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/VsCode/tasks.json' `
         -OutFile "$PSScriptRoot\.vscode\tasks.json"
 }
 
-task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateValidationWorkflow, UpdatePreReleaseWorkflow, UpdateReleaseWorkflow, UpdateVsCodeTasks
+task UpdatePsBuildTasksTasks {
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/tasks/PowerShell-Matrix.Tasks.ps1' `
+        -OutFile "$PSScriptRoot\tasks\PsBuild.Tasks.ps1"
+}
+
+task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateValidationWorkflow, UpdatePreReleaseWorkflow, UpdateReleaseWorkflow, UpdateVsCodeTasks, UpdatePsBuildTasksTasks

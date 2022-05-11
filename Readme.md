@@ -136,7 +136,12 @@ task UpdateVsCodeTasks {
 To update all build tasks add and use the following task:
 
 ```powershell
-task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateValidationWorkflow, UpdatePreReleaseWorkflow, UpdateReleaseWorkflow
+
+task UpdatePsBuildTasksTasks {
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/tasks/PowerShell-Matrix.Tasks.ps1' `
+        -OutFile "$PSScriptRoot\tasks\PsBuild.Tasks.ps1"
+}
 ```
 
 ## Changelog
