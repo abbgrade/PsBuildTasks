@@ -19,14 +19,14 @@ task UpdatePreReleaseWorkflow {
     Invoke-WebRequest `
         -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/GitHub/pre-release-windows.yml' |
     ForEach-Object { $_ -replace 'MyModuleName', $ModuleName } |
-    Out-File "$PSScriptRoot\..\.github\workflows\pre-release.yml"
+    Out-File "$PSScriptRoot\..\.github\workflows\pre-release.yml" -NoNewline
 }
 
 task UpdateReleaseWorkflow {
     Invoke-WebRequest `
         -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/GitHub/release-windows.yml' |
     ForEach-Object { $_ -replace 'MyModuleName', $ModuleName } |
-    Out-File "$PSScriptRoot\..\.github\workflows\release.yml"
+    Out-File "$PSScriptRoot\..\.github\workflows\release.yml" -NoNewline
 }
 
 #endregion
