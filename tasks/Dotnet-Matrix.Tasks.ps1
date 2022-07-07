@@ -42,6 +42,16 @@ task UpdateIndexPage {
 }
 
 #endregion
+#region GitHub Dependabot
+
+task UpdateDependabotConfig {
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/dependabot/dependabot.yml' |
+    ForEach-Object { $_ -replace 'MyModuleName', $ModuleName } |
+    Out-File "$PSScriptRoot\..\.github\dependabot.yml" -NoNewline
+}
+
+#endregion
 #region VsCode
 
 task UpdateVsCodeTasks {
