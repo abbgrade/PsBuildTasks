@@ -40,9 +40,9 @@ task UpdateBuildTasks {
 
 #### Powershell
 
-- It expects a `Source` directory, that contains the manifest file.
-- The module will be build to the `Publish` directory.
-- The documentation will be created in the `Docs` directory.
+- It expects a `src` directory, that contains the manifest file.
+- The module will be build to the `publish` directory.
+- The documentation will be created in the `docs` directory.
 
 Add the following task to your `.build.ps1` file to create/update your build tasks.
 
@@ -50,7 +50,7 @@ Add the following task to your `.build.ps1` file to create/update your build tas
 task UpdateBuildTasks {
     Invoke-WebRequest `
         -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/Powershell/Build.Tasks.ps1' `
-        -OutFile "$PSScriptRoot\Tasks\Build.Tasks.ps1"
+        -OutFile "$PSScriptRoot\tasks\Build.Tasks.ps1"
 }
 ```
 
@@ -133,10 +133,26 @@ task UpdateVsCodeTasks {
 
 ## Container Tasks
 
-To update all build tasks add and use the following task:
+To update all build tasks, add and use one of the following task:
+
+### PowerShell
 
 ```powershell
-task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateValidationWorkflow, UpdatePreReleaseWorkflow, UpdateReleaseWorkflow
+task UpdatePsBuildTasksTasks {
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/tasks/PowerShell-Matrix.Tasks.ps1' `
+        -OutFile "$PSScriptRoot\tasks\PsBuild.Tasks.ps1"
+}
+```
+
+### DotNet
+
+```powershell
+task UpdatePsBuildTasksTasks {
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/tasks/Dotnet-Matrix.Tasks.ps1' `
+        -OutFile "$PSScriptRoot\tasks\PsBuild.Tasks.ps1"
+}
 ```
 
 ## Changelog

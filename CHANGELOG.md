@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Update tasks.
+- GitHub Pages config.
+- Dependabot config.
+
 ### Fixed
 
-- VsCode test task for linux environments.
+- Dotnet-Matrix.Tasks does not fail in empty project.
+- Wrong file separators for linux.
 
 ## [1.1.0] - 2022-03-19
 
