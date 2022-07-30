@@ -7,6 +7,26 @@ This includes:
 - [InvokeBuild](https://github.com/nightroman/Invoke-Build) tasks.
 - [GitHub Actions](https://docs.github.com/en/actions) workflows.
 
+## Getting Started
+
+There is a PowerShell module to manage PsBuildTasks and helps with it's installation.
+Get it with `Install-Module -Name PsBuildTasks`.
+The next step depends on your project.
+
+1. If your project is written in PowerShell or DotNet/C#.
+2. If your project supports only Windows or is cross platform and requires matrix tests on Windows and Linux.
+
+There are container tasks that update multiple features of PsBuildTasks
+
+### PowerShell Matrix
+
+Go to the project root directory
+
+```powershell
+Import-Module -Name PsBuildTasks
+Install-PsBuildTask -Path ./tasks -Task PowerShell-Matrix
+```
+
 ## InvokeBuild Tasks
 
 It provides the following tasks:
