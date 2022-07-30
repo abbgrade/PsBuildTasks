@@ -24,7 +24,8 @@ Go to the project root directory
 
 ```powershell
 Import-Module -Name PsBuildTasks
-Install-PsBuildTask -Path ./tasks -Task PowerShell-Matrix
+Install-PsBuildTask -Path . -Task PowerShell-Matrix
+Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
 ```
 
 ## InvokeBuild Tasks
