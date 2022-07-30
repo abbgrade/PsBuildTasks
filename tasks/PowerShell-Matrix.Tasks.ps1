@@ -39,6 +39,7 @@ task UpdateReleaseWorkflow {
 #region GitHub Pages
 
 task UpdateIndexPage {
+    New-Item -Type Directory "$PSScriptRoot\..\docs" -ErrorAction SilentlyContinue
     Invoke-WebRequest `
         -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/docs/index.md' `
         -OutFile "$PSScriptRoot\..\docs\index.md"
