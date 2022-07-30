@@ -1,4 +1,10 @@
 
+[CmdletBinding()]
+param (
+    [Parameter()]
+    [int] $BuildNumber
+)
+
 $ModuleName = 'PsBuildTasks'
 
 . $PSScriptRoot/tasks/PowerShell-Matrix.Tasks.ps1
