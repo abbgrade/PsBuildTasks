@@ -18,6 +18,7 @@ task UpdateValidationWorkflow {
 }
 
 task UpdatePreReleaseWorkflow {
+    requires ModuleName
     [System.IO.FileInfo] $file = "$PSScriptRoot\..\.github\workflows\pre-release.yml"
     New-Item -Type Directory $file.Directory -ErrorAction SilentlyContinue
     Invoke-WebRequest `
@@ -27,6 +28,7 @@ task UpdatePreReleaseWorkflow {
 }
 
 task UpdateReleaseWorkflow {
+    requires ModuleName
     [System.IO.FileInfo] $file = "$PSScriptRoot\..\.github\workflows\release.yml"
     New-Item -Type Directory $file.Directory -ErrorAction SilentlyContinue
     Invoke-WebRequest `
