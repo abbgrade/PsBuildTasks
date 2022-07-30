@@ -63,7 +63,7 @@
             "type": "shell",
             "command": "Invoke-Pester",
             "options": {
-                "cwd": "${workspaceFolder}/test"
+                "cwd": "test"
             },
             "problemMatcher": "$msCompile",
             "presentation": {
@@ -71,6 +71,6 @@
                 "showReuseMessage": false
             },
             "dependsOn": "Build"
-        }
+        },
     ]
 }
