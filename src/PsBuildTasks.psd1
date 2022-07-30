@@ -12,7 +12,7 @@
 RootModule = 'PsBuildTasks.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.1'
+ModuleVersion = '1.2.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -30,7 +30,7 @@ CompanyName = ''
 Copyright = '(c) Steffen Kampmann. All rights reserved.'
 
 # Description of the functionality provided by this module
-# Description = ''
+Description = 'Manage PsBuildTasks'
 
 # Minimum version of the PowerShell engine required by this module
 # PowerShellVersion = ''
@@ -95,7 +95,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'sql-server'
+        Tags = 'powershell', 'github', 'devops'
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/abbgrade/PsBuildTasks/blob/master/LICENSE'

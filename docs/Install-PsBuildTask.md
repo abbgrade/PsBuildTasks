@@ -13,7 +13,7 @@ Install PsBuildTasks task file.
 ## SYNTAX
 
 ```
-Install-PsBuildTask [-Path] <DirectoryInfo> [-Task] <String> [<CommonParameters>]
+Install-PsBuildTask [-Path] <DirectoryInfo> [-Task] <String> [[-Commit] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -56,6 +56,21 @@ Aliases:
 Required: True
 Position: 2
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Commit
+Specifies a revision by commit id.
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: Main
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

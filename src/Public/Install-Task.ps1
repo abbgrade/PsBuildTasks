@@ -19,7 +19,11 @@ function Install-Task {
         # Name of the task file to install.
         [Parameter( Mandatory )]
         [ValidateSet('PowerShell-Matrix', 'Dotnet-Matrix')]
-        [string] $Task
+        [string] $Task,
+
+        # Specifies a revision by commit id.
+        [Parameter()]
+        [string] $Commit = 'main'
     )
 
     $tasksDirectory = Join-Path $Path 'tasks'
@@ -31,6 +35,6 @@ function Install-Task {
     $taskFile = Join-Path $tasksDirectory 'PsBuild.Tasks.ps1'
     
     Invoke-WebRequest `
-        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/tasks/$Task.Tasks.ps1" `
+        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$Commit/tasks/$Task.Tasks.ps1" `
         -OutFile $taskFile
 }

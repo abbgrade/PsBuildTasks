@@ -10,29 +10,38 @@ task UpdateBuildTasks {
 #region GitHub Actions
 
 task UpdateValidationWorkflow {
+    [System.IO.FileInfo] $file = "$PSScriptRoot/../.github/workflows/build-validation.yml"
+    New-Item -Type Directory $file.Directory -ErrorAction SilentlyContinue
     Invoke-WebRequest `
         -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/GitHub/build-validation-matrix.yml' `
-        -OutFile "$PSScriptRoot\..\.github\workflows\build-validation.yml"
+        -OutFile $file
 }
 
 task UpdatePreReleaseWorkflow {
+    requires ModuleName
+    [System.IO.FileInfo] $file = "$PSScriptRoot\..\.github\workflows\pre-release.yml"
+    New-Item -Type Directory $file.Directory -ErrorAction SilentlyContinue
     Invoke-WebRequest `
         -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/GitHub/pre-release-windows.yml' |
     ForEach-Object { $_ -replace 'MyModuleName', $ModuleName } |
-    Out-File "$PSScriptRoot\..\.github\workflows\pre-release.yml"
+    Out-File $file -NoNewline
 }
 
 task UpdateReleaseWorkflow {
+    requires ModuleName
+    [System.IO.FileInfo] $file = "$PSScriptRoot\..\.github\workflows\release.yml"
+    New-Item -Type Directory $file.Directory -ErrorAction SilentlyContinue
     Invoke-WebRequest `
         -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/GitHub/release-windows.yml' |
     ForEach-Object { $_ -replace 'MyModuleName', $ModuleName } |
-    Out-File "$PSScriptRoot\..\.github\workflows\release.yml"
+    Out-File $file -NoNewline
 }
 
 #endregion
 #region GitHub Pages
 
 task UpdateIndexPage {
+    New-Item -Type Directory "$PSScriptRoot\..\docs" -ErrorAction SilentlyContinue
     Invoke-WebRequest `
         -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/docs/index.md' `
         -OutFile "$PSScriptRoot\..\docs\index.md"
