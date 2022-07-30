@@ -1,9 +1,22 @@
 function Install-Task {
+
+    <#
+
+    .SYNOPSIS
+    Install PsBuildTasks task file.
+
+    .DESCRIPTION
+    Downloads a task file and saves it to the tasks directory.
+
+    #>
+
     [CmdletBinding()]
     param (
+        # Path to the tasks directory.
         [Parameter( Mandatory )]
         [System.IO.DirectoryInfo] $Path,
 
+        # Name of the task file to install.
         [Parameter( Mandatory )]
         [ValidateSet('PowerShell-Matrix', 'Dotnet-Matrix')]
         [string] $Task
