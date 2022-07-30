@@ -7,11 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2022-07-30
+
 ### Added
 
 - Update tasks.
 - GitHub Pages config.
 - Dependabot config.
+- PowerShell module with install command.
 
 ### Fixed
 
