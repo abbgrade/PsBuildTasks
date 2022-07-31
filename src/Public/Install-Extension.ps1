@@ -13,30 +13,13 @@ function Install-Extension {
         [Parameter( Mandatory )]
         [System.IO.DirectoryInfo] $Path,
 
-        # Name of the extension.
-        [Parameter( Mandatory )]
-        [string] $Name,
-
         # URL to the git repository.
         [Parameter( Mandatory )]
-        [string] $Repository,
-
-        # Branch name to use.
-        [Parameter()]
-        [string] $Branch = 'main'
+        [string] $Repository
     )
 
-    [System.IO.DirectoryInfo] $SqlServerSamplesDirectory = Join-Path $Path tasks $Name
+    Join-Path $Path tasks | Push-Location
+    git submodule add $Repository
+    Pop-Location
 
-    New-Item $SqlServerSamplesDirectory -ItemType Directory -ErrorAction Continue
-
-    Push-Location $SqlServerSamplesDirectory
-    try {
-        git init
-        git remote add origin -f $Repository
-        git checkout $Branch
-    }
-    finally {
-        Pop-Location
-    }
 }

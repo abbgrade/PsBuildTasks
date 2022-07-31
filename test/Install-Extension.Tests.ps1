@@ -15,23 +15,25 @@ Describe Install-Extension {
         BeforeAll {
             $ProjectPath = "TestDrive:\"
             Install-PsBuildTask -Path $ProjectPath -Task PowerShell-Matrix
+            Push-Location $ProjectPath
+            git init
+            Pop-Location
         }
 
         It works {
             Install-PsBuildExtension `
                 -Path $ProjectPath `
-                -Name PsSqlTestTasks `
                 -Repository 'https://github.com/abbgrade/PsSqlTestTasks.git' `
-                -Branch main `
                 -ErrorAction Stop
-
-            Get-ChildItem $ProjectPath -Recurse | Write-Verbose -Verbose
 
             $ExtensionPath = Join-Path $ProjectPath tasks PsSqlTestTasks
             $ExtensionPath | Should -Exist
 
             $TaskPath = Join-Path $ExtensionPath WideWorldImporters.Tasks.ps1
             $TaskPath | Should -Exist
+
+            $GitModules = Join-Path $ProjectPath .gitmodules
+            $GitModules | Should -Exist
         }
 
     }
