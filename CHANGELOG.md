@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2022-08-07
+
+### Added
+
+- Branch config for PowerShell matrix.
+
+### Fixed
+
+- Fixed PowerShell clean removed doc index and config.
+
 ## [1.3.0] - 2022-07-31
 
 ### Added

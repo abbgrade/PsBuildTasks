@@ -8,7 +8,8 @@ requires ModuleName
 
 # Synopsis: Remove all temporary files.
 task Clean -Jobs {
-	remove $PublishDirectory, $DocumentationDirectory
+	remove $PublishDirectory
+	$DocumentationDirectory | Get-ChildItem -Exclude index.md, _config.yml | Remove-item
 }
 
 # Synopsis: Import the module.
