@@ -14,7 +14,7 @@
                 "-NoExit",
                 "-NoProfile",
                 "-Command",
-                "Import-Module ${workspaceFolder}/publish/PsSmo/PsSmo.dll",
+                "Import-Module ${workspaceFolder}/publish/MyModuleName/MyModuleName.dll",
             ],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,

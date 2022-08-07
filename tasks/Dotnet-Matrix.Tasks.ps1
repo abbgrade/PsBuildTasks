@@ -80,11 +80,13 @@ task UpdateVsCodeTasks {
 }
 
 task UpdateVsCodeLaunch {
+    requires ModuleName
     [System.IO.FileInfo] $file = "$PSScriptRoot\..\.vscode\launch.json"
     New-Item -Type Directory $file.Directory -ErrorAction SilentlyContinue
     Invoke-WebRequest `
-        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/VsCode/launch.json" `
-        -OutFile $file
+        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/VsCode/launch.json" |
+    ForEach-Object { $_ -replace 'MyModuleName', $ModuleName } |
+    Out-File $file -NoNewline
 }
 
 #endregion
