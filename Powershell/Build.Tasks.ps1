@@ -1,10 +1,10 @@
 requires ModuleName
 
-[System.IO.DirectoryInfo] $SourceDirectory = "$PsScriptRoot\..\src"
-[System.IO.DirectoryInfo] $SourceManifest = "$SourceDirectory\$ModuleName.psd1"
-[System.IO.DirectoryInfo] $PublishDirectory = "$PsScriptRoot\..\publish"
-[System.IO.DirectoryInfo] $DocumentationDirectory = "$PsScriptRoot\..\docs"
-[System.IO.DirectoryInfo] $ModulePublishDirectory = "$PublishDirectory\$ModuleName"
+[System.IO.DirectoryInfo] $SourceDirectory = "$PsScriptRoot/../src"
+[System.IO.DirectoryInfo] $SourceManifest = "$SourceDirectory/$ModuleName.psd1"
+[System.IO.DirectoryInfo] $PublishDirectory = "$PsScriptRoot/../publish"
+[System.IO.DirectoryInfo] $DocumentationDirectory = "$PsScriptRoot/../docs"
+[System.IO.DirectoryInfo] $ModulePublishDirectory = "$PublishDirectory/$ModuleName"
 
 # Synopsis: Remove all temporary files.
 task Clean -Jobs {
@@ -50,7 +50,7 @@ task SetPrerelease -If $BuildNumber {
 # Synopsis: Build the module.
 task Build -Jobs Clean, Doc.Update, PreparePublishDirectory, {
 	Copy-Item -Path $SourceDirectory -Destination $ModulePublishDirectory -Recurse
-    [System.IO.FileInfo] $Global:Manifest = "$ModulePublishDirectory\$ModuleName.psd1"
+    [System.IO.FileInfo] $Global:Manifest = "$ModulePublishDirectory/$ModuleName.psd1"
 }, SetPrerelease
 
 # Synopsis: Install the module.
