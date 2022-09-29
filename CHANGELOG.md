@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2022-09-29
+
+### Added
+
+- Added tasks file for powershell modules with only windows support.
+
 ## [1.5.1] - 2022-09-11
 
 ### Fixed
