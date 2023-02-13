@@ -20,11 +20,11 @@ jobs:
         run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           Install-Module InvokeBuild -ErrorAction Stop
-          Invoke-Build InstallBuildDependencies
+          Invoke-Build InstallBuildDependencies -Verbose
 
       - name: Create build
         shell: pwsh
-        run: Invoke-Build Build
+        run: Invoke-Build Build -Verbose
 
       - name: Upload build
         uses: actions/upload-artifact@v2
@@ -49,7 +49,7 @@ jobs:
         run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           Install-Module InvokeBuild -ErrorAction Stop
-          Invoke-Build InstallReleaseDependencies
+          Invoke-Build InstallReleaseDependencies -Verbose
 
       - name: Publish to PsGallery
         shell: pwsh
