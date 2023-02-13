@@ -2,7 +2,10 @@
 [CmdletBinding()]
 param (
     [Parameter()]
-    [int] $BuildNumber
+    [int] $BuildNumber,
+
+    [Parameter()]
+    [string] $PsBuildTaskBranch
 )
 
 $ModuleName = 'PsBuildTasks'
