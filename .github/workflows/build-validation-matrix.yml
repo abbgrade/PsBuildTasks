@@ -50,7 +50,7 @@ jobs:
         run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           Install-Module InvokeBuild -ErrorAction Stop
-          Invoke-Build InstallTestDependencies
+          Invoke-Build InstallTestDependencies -Verbose
 
       - name: Test module
         uses: zyborg/pester-tests-report@v1.5.0
