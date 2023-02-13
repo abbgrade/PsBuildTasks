@@ -18,7 +18,7 @@ task UpdateValidationWorkflow {
     [System.IO.FileInfo] $file = "$PSScriptRoot/../.github/workflows/build-validation.yml"
     New-Item -Type Directory $file.Directory -ErrorAction SilentlyContinue
     Invoke-WebRequest `
-        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/GitHub/build-validation-windows.yml" `
+        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/GitHub/build-validation-matrix.yml" `
         -OutFile $file
 }
 
@@ -71,7 +71,7 @@ task UpdateVsCodeTasks {
 
 task UpdatePsBuildTasksTasks {
     Invoke-WebRequest `
-        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/tasks/PowerShell-Windows.Tasks.ps1" `
+        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/tasks/PowerShell-Matrix.Tasks.ps1" `
         -OutFile "$PSScriptRoot\PsBuild.Tasks.ps1"
 }
 

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2023-02-13
+
+### Added
+
+- Added watermark to build tasks file.
+- Verbose output to custom scripts in Github workflows.
+
+### Fixed
+
+- Fixed install task for linux.
+
 ## [1.6.0] - 2022-09-29
 
 ### Added

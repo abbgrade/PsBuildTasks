@@ -59,9 +59,11 @@ task UpdateIndexPage {
 #region VsCode
 
 task UpdateVsCodeTasks {
+    [System.IO.FileInfo] $file = "$PSScriptRoot\..\.vscode\tasks.json"
+    New-Item -Type Directory $file.Directory -ErrorAction SilentlyContinue
     Invoke-WebRequest `
         -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/VsCode/tasks.json" `
-        -OutFile "$PSScriptRoot\..\.vscode\tasks.json"
+        -OutFile $file
 }
 
 #endregion

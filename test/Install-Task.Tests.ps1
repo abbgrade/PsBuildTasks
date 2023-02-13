@@ -25,8 +25,8 @@ Describe Install-Task {
         "TestDrive:\tasks\PsBuild.Tasks.ps1" | Should -Exist
     }
 
-    It Dotnet-Matrix {
-        Install-PsBuildTask-Commit -Path "TestDrive:\" -Task Dotnet-Matrix -Commit 'fb0767a258df19fb95f75f5cd96e14cc43e37bf8' -ErrorAction Stop
+    It Dotnet-Matrix-Commit {
+        Install-PsBuildTask -Path "TestDrive:\" -Task Dotnet-Matrix -Commit 'fb0767a258df19fb95f75f5cd96e14cc43e37bf8' -ErrorAction Stop
         "TestDrive:\tasks\PsBuild.Tasks.ps1" | Should -Exist
     }
 }
