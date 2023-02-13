@@ -1,3 +1,5 @@
+# Copy from original https://github.com/abbgrade/PsBuildTasks/blob/main/Powershell/Build.Tasks.ps1
+
 requires ModuleName
 
 [System.IO.DirectoryInfo] $SourceDirectory = "$PsScriptRoot/../src"
