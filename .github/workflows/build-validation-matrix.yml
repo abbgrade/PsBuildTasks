@@ -17,7 +17,7 @@ jobs:
         run: |
           Set-PSRepository PSGallery -InstallationPolicy Trusted
           Install-Module InvokeBuild -ErrorAction Stop
-          Invoke-Build InstallBuildDependencies
+          Invoke-Build InstallBuildDependencies -Verbose
 
       - name: Create build
         shell: pwsh
