@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2023-02-16
+
+### Changed
+
+- Updated outdated github actions.
+- Enabled recursive git checkout including submodules.
+
 ## [1.7.0] - 2023-02-13
 
 ### Added
