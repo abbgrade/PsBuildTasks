@@ -22,6 +22,14 @@ task UpdateValidationWorkflow {
         -OutFile $file
 }
 
+task UpdatePagesWorkflow {
+    [System.IO.FileInfo] $file = "$PSScriptRoot/../.github/workflows/build-pages.yml"
+    New-Item -Type Directory $file.Directory -ErrorAction SilentlyContinue
+    Invoke-WebRequest `
+        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/GitHub/build-pages.yml" `
+        -OutFile $file
+}
+
 task UpdatePreReleaseWorkflow {
     requires ModuleName
     [System.IO.FileInfo] $file = "$PSScriptRoot\..\.github\workflows\pre-release.yml"
@@ -42,6 +50,8 @@ task UpdateReleaseWorkflow {
     Out-File $file -NoNewline
 }
 
+task UpdateWorkflows -Jobs UpdateValidationWorkflow, UpdatePagesWorkflow, UpdatePreReleaseWorkflow, UpdateReleaseWorkflow
+
 #endregion
 #region GitHub Pages
 
@@ -51,8 +61,8 @@ task UpdateIndexPage {
         -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/docs/index.md" `
         -OutFile "$PSScriptRoot\..\docs\index.md"
     Invoke-WebRequest `
-        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/docs/_config.yml" `
-        -OutFile "$PSScriptRoot\..\docs\_config.yml"
+        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/_config.yml" `
+        -OutFile "$PSScriptRoot\..\_config.yml"
 }
 
 #endregion
@@ -77,4 +87,4 @@ task UpdatePsBuildTasksTasks {
 
 #endregion
 
-task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateValidationWorkflow, UpdatePreReleaseWorkflow, UpdateIndexPage, UpdateReleaseWorkflow, UpdateVsCodeTasks, UpdatePsBuildTasksTasks
+task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateWorkflows, UpdateIndexPage, UpdateVsCodeTasks, UpdatePsBuildTasksTasks
