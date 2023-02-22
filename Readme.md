@@ -1,16 +1,17 @@
-# PsBuildTasks
+# Readme
 
-This provides reusable sources for build, test, release automation of PowerShell modules, written in DotNet/C# or PowerShell.
+PsBuildTasks provides reusable sources for build, test, release automation of PowerShell modules, written in DotNet/C# or PowerShell.
 
 This includes:
 
 - [InvokeBuild](https://github.com/nightroman/Invoke-Build) tasks.
 - [GitHub Actions](https://docs.github.com/en/actions) workflows.
+- A PowerShell module for installation and updates. For details, visit the [GitHub Pages](https://abbgrade.github.io/PsBuildTasks/).
 
 ## Getting Started
 
 There is a PowerShell module to manage PsBuildTasks and helps with it's installation.
-Get it with `Install-Module -Name PsBuildTasks`.
+Get it with `Install-Module -Name PsBuildTasks` from from [PsGallery](https://www.powershellgallery.com/packages/PsBuildTasks).
 The next step depends on your project.
 
 1. If your project is written in PowerShell or DotNet/C#.
