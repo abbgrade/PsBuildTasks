@@ -61,8 +61,8 @@ task UpdateIndexPage {
         -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/docs/index.md" `
         -OutFile "$PSScriptRoot\..\docs\index.md"
     Invoke-WebRequest `
-        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/docs/_config.yml" `
-        -OutFile "$PSScriptRoot\..\docs\_config.yml"
+        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/_config.yml" `
+        -OutFile "$PSScriptRoot\..\_config.yml"
 }
 
 #endregion
