@@ -6,7 +6,9 @@ This includes:
 
 - [InvokeBuild](https://github.com/nightroman/Invoke-Build) tasks.
 - [GitHub Actions](https://docs.github.com/en/actions) workflows.
-- A PowerShell module for installation and updates. For details, visit the [GitHub Pages](https://abbgrade.github.io/PsBuildTasks/).
+- A PowerShell module for installation and updates. See [the command reference](./docs/) for descriptions and examples.
+
+For details, visit the [GitHub Pages](https://abbgrade.github.io/PsBuildTasks/).
 
 ## Getting Started
 
