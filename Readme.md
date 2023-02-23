@@ -33,6 +33,14 @@ $ModuleName = 'MyModuleName'
 Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
 ```
 
+## Update development version
+
+You can update PsBuildTasks from a branch of choice using:
+
+```powershell
+$PsBuildTaskBranch = 'develop'; Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks
+```
+
 ## Changelog
 
 See the [changelog](./CHANGELOG.md) file.
