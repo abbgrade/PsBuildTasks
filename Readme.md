@@ -38,7 +38,7 @@ Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
 You can update PsBuildTasks from a branch of choice using:
 
 ```powershell
-$PsBuildTaskBranch = 'develop'; Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks
+$PsBuildTaskBranch = 'develop'; Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks; Invoke-Build UpdatePsBuildTasks
 ```
 
 ## Changelog
