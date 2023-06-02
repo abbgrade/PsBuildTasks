@@ -33,6 +33,15 @@ $ModuleName = 'MyModuleName'
 Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
 ```
 
+Create or reuse the file `.build.ps1` in the root directory with the content
+
+```powershell
+$ModuleName = 'MyModuleName'
+
+. $PSScriptRoot/tasks/Build.Tasks.ps1
+. $PSScriptRoot/tasks/PsBuild.Tasks.ps1
+```
+
 ## Update development version
 
 You can update PsBuildTasks to:
