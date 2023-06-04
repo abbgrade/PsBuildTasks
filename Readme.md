@@ -24,22 +24,22 @@ There are container tasks that update multiple features of PsBuildTasks
 
 ### PowerShell Matrix
 
-Go to the project root directory
+Go to the project root directory and execute the following script.
+Make sure to save your existing code in git, since files may be overwritten.
 
 ```powershell
 Import-Module -Name PsBuildTasks
 Install-PsBuildTask -Path . -Task PowerShell-Matrix
-$ModuleName = 'MyModuleName'
+$ModuleName = ( Get-Location | Get-Item ).Name
+
 Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
-```
 
-Create or reuse the file `.build.ps1` in the root directory with the content
+Set-Content -Path .build.ps1 -Value @"
+`$ModuleName = '$ModuleName'
 
-```powershell
-$ModuleName = 'MyModuleName'
-
-. $PSScriptRoot/tasks/Build.Tasks.ps1
-. $PSScriptRoot/tasks/PsBuild.Tasks.ps1
+. `$PSScriptRoot/tasks/Build.Tasks.ps1
+. `$PSScriptRoot/tasks/PsBuild.Tasks.ps1
+"@
 ```
 
 ## Update development version
