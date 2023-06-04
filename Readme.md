@@ -42,6 +42,20 @@ Set-Content -Path .build.ps1 -Value @"
 "@
 ```
 
+In case you start a module from scratch, create a module structure like this.
+
+```powershell
+New-Item src -ItemType Directory
+New-ModuleManifest -Path src/$ModuleName.psd1 -RootModule "$ModuleName.psm1"
+$local:manifest = Get-Content -Path src/$ModuleName.psd1 | ForEach-Object {
+    $_ -Replace 'FunctionsToExport', '# FunctionsToExport' -Replace 'CmdletsToExport', '# CmdletsToExport' -Replace 'VariablesToExport', '# VariablesToExport' -Replace 'AliasesToExport', '# AliasesToExport'
+}
+$local:manifest | Set-Content -Path src/$ModuleName.psd1
+New-Item src/Internal -ItemType Directory
+New-Item src/Public -ItemType Directory
+New-Item test -ItemType Directory
+```
+
 ## Update development version
 
 You can update PsBuildTasks to:
