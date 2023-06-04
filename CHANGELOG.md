@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- PowerShell script module template.
+
 ## [1.9.0] - 2023-03-23
 
 ### Added
