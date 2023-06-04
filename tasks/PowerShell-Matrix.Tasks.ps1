@@ -90,7 +90,7 @@ task UpdatePsBuildTasksTasks {
 
 task UpdateModuleFile {
     requires ModuleName
-    [System.IO.FileInfo] $file = "$PSScriptRoot\..\Powershell\$ModuleName.psm1"
+    [System.IO.FileInfo] $file = "$PSScriptRoot\..\src\$ModuleName.psm1"
     New-Item -Type Directory $file.Directory -ErrorAction SilentlyContinue
     Invoke-WebRequest `
         -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/Powershell/MyModuleName.psm1" |
