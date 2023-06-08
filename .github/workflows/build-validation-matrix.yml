@@ -61,7 +61,7 @@ jobs:
         run: |
             $config = New-PesterConfiguration
             $config.Run.Path = 'test'
-            $config.Verbosity = 'Detailed'
+            $config.Output.Verbosity = 'Detailed'
             $config.Output.CIFormat = 'GithubActions'
             $config.CodeCoverage.Enabled = $true
             $config.CodeCoverage.Path = 'src'
