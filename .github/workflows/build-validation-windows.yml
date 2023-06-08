@@ -57,10 +57,12 @@ jobs:
           Invoke-Build InstallTestDependencies -Verbose
 
       - name: Test module
-        uses: zyborg/pester-tests-report@v1.5.0
-        with:
-          include_paths: test
-          report_name: test-report
-          report_title: Module Tests
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          tests_fail_step: true
+        shell: pwsh
+        run: |
+            $config = New-PesterConfiguration
+            $config.Run.Path = 'test'
+            $config.Output.Verbosity = 'Detailed'
+            $config.Output.CIFormat = 'GithubActions'
+            $config.CodeCoverage.Enabled = $true
+            $config.CodeCoverage.Path = 'src'
+            Invoke-Pester -Configuration $config
