@@ -24,13 +24,43 @@ There are container tasks that update multiple features of PsBuildTasks
 
 ### PowerShell Matrix
 
-Go to the project root directory
+Go to the project root directory and execute the following script.
+Make sure to save your existing code in git, since files may be overwritten.
 
 ```powershell
 Import-Module -Name PsBuildTasks
 Install-PsBuildTask -Path . -Task PowerShell-Matrix
-$ModuleName = 'MyModuleName'
+$ModuleName = ( Get-Location | Get-Item ).Name
+
 Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
+
+Set-Content -Path .build.ps1 -Value @"
+`$ModuleName = '$ModuleName'
+
+. `$PSScriptRoot/tasks/Build.Tasks.ps1
+. `$PSScriptRoot/tasks/PsBuild.Tasks.ps1
+
+task InstallModuleDependencies -Jobs {}
+task InstallBuildDependencies -Jobs InstallModuleDependencies, {
+    Install-Module platyPs
+}
+task InstallTestDependencies -Jobs InstallModuleDependencies, {}
+task InstallReleaseDependencies -Jobs InstallModuleDependencies, {}
+"@
+```
+
+In case you start a module from scratch, create a module structure like this.
+
+```powershell
+New-Item src -ItemType Directory
+New-ModuleManifest -Path src/$ModuleName.psd1 -RootModule "$ModuleName.psm1"
+$local:manifest = Get-Content -Path src/$ModuleName.psd1 | ForEach-Object {
+    $_ -Replace 'FunctionsToExport', '# FunctionsToExport' -Replace 'CmdletsToExport', '# CmdletsToExport' -Replace 'VariablesToExport', '# VariablesToExport' -Replace 'AliasesToExport', '# AliasesToExport'
+}
+$local:manifest | Set-Content -Path src/$ModuleName.psd1
+New-Item src/Internal -ItemType Directory
+New-Item src/Public -ItemType Directory
+New-Item test -ItemType Directory
 ```
 
 ## Update development version
