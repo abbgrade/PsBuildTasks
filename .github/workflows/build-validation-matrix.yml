@@ -60,5 +60,6 @@ jobs:
         shell: pwsh
         run: |
             $config = New-PesterConfiguration
+            $config.Run.Path = 'test'
             $config.Output.CIFormat = 'GithubActions'
-            Invoke-Pester test -Configuration $config
+            Invoke-Pester -Configuration $config
