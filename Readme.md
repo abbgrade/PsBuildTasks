@@ -35,6 +35,12 @@ $ModuleName = ( Get-Location | Get-Item ).Name
 Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
 
 Set-Content -Path .build.ps1 -Value @"
+[CmdletBinding()]
+param (
+    [Parameter()]
+    [int] $BuildNumber
+)
+
 `$ModuleName = '$ModuleName'
 
 . `$PSScriptRoot/tasks/Build.Tasks.ps1
