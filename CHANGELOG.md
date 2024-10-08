@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated github action tasks `actions/checkout`, `actions/upload-artifact`, `actions/download-artifact` to v4.
+
 ## [1.10.0] - 2023-06-08
 
 ### Added
