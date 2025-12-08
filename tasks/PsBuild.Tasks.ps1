@@ -61,8 +61,8 @@ task UpdateIndexPage {
         -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/docs/index.md" `
         -OutFile "$PSScriptRoot\..\docs\index.md"
     Invoke-WebRequest `
-        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/docs/_config.yml" `
-        -OutFile "$PSScriptRoot\..\docs\_config.yml"
+        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/_config.yml" `
+        -OutFile "$PSScriptRoot\..\_config.yml"
 }
 
 #endregion
@@ -86,5 +86,16 @@ task UpdatePsBuildTasksTasks {
 }
 
 #endregion
+#region PowerShell Module
 
-task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateWorkflows, UpdateIndexPage, UpdateVsCodeTasks, UpdatePsBuildTasksTasks
+task UpdateModuleFile {
+    requires ModuleName
+    New-Item -Type Directory "$PSScriptRoot\..\src" -ErrorAction SilentlyContinue
+    Invoke-WebRequest `
+        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/Powershell/MyModuleName.psm1" `
+        -OutFile "$PSScriptRoot\..\src\$ModuleName.psm1"
+}
+
+#endregion
+
+task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateWorkflows, UpdateIndexPage, UpdateVsCodeTasks, UpdatePsBuildTasksTasks, UpdateModuleFile

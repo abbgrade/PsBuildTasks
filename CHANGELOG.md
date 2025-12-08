@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.11.1] - 2025-12-08
+
+### Fix
+
+- Hotfix branches trigger now pre-releases.
+
 ## [1.11.0] - 2024-10-08
 
 ### Changed
