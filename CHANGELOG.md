@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated github action tasks
+  - `actions/checkout` to v6.
+  - `actions/configure-pages` to v5.
+  - `actions/upload-pages-artifact` to v4.
+  - `actions/deploy-pages` to v4.
+  - `actions/upload-artifact` to v6.
+  - `actions/download-artifact` to v7.
+
 ## [1.11.1] - 2025-12-08
 
 ### Fix
