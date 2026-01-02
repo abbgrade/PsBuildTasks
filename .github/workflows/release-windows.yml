@@ -64,4 +64,4 @@ jobs:
       - name: Publish to PsGallery
         shell: pwsh
         run: |
-          Publish-Module -Path ./${{ inputs.module-name }} -NuGetApiKey ${{ secrets.ps-gallery-key }} -Force:${{ inputs.publish }}
+          Publish-Module -Path ./${{ inputs.module-name }} -NuGetApiKey ${{ secrets.ps-gallery-key }} -Force:$${{ inputs.publish }}
