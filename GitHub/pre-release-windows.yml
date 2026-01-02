@@ -1,6 +1,6 @@
 on:
   push:
-    branches: [ release/*, 'hotfix/*' ]
+    branches: [ release/* ]
   workflow_dispatch:
 
 jobs:
