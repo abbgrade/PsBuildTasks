@@ -8,6 +8,7 @@ on:
       force-publish:
         required: false
         type: boolean
+        default: false
         description: Hotfixes may require force, to publish version numbers not exceeding the current version number.
     secrets:
       ps-gallery-key:
