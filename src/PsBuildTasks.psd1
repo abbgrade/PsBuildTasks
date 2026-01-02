@@ -12,7 +12,7 @@
 RootModule = 'PsBuildTasks.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.14.3'
+ModuleVersion = '1.14.4'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()

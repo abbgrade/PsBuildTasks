@@ -5,7 +5,7 @@ on:
 
 jobs:
   pre-release:
-    uses: abbgrade/PsBuildTasks/.github/workflows/pre-release-windows.yml@1.14.3
+    uses: abbgrade/PsBuildTasks/.github/workflows/pre-release-windows.yml@1.14.4
     with:
       module-name: MyModuleName
     secrets:
