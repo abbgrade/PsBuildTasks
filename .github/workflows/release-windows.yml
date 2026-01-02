@@ -4,6 +4,11 @@ on:
       module-name:
         required: true
         type: string
+
+      force-publish:
+        required: false
+        type: boolean
+        description: Hotfixes may require force, to publish version numbers not exceeding the current version number.
     secrets:
       ps-gallery-key:
         required: true
@@ -58,4 +63,4 @@ jobs:
       - name: Publish to PsGallery
         shell: pwsh
         run: |
-          Publish-Module -Path ./${{ inputs.module-name }} -NuGetApiKey ${{ secrets.ps-gallery-key }}
+          Publish-Module -Path ./${{ inputs.module-name }} -NuGetApiKey ${{ secrets.ps-gallery-key }} -Force:${{ inputs.publish }}
