@@ -5,7 +5,7 @@ on:
 
 jobs:
   release:
-    uses: abbgrade/PsBuildTasks/.github/workflows/release-windows.yml@1.13.0
+    uses: abbgrade/PsBuildTasks/.github/workflows/release-windows.yml@1.14.0
     with:
       module-name: MyModuleName
       force-publish: false
