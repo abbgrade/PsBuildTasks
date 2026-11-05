@@ -13,14 +13,15 @@ For details, visit the [GitHub Pages](https://abbgrade.github.io/PsBuildTasks/).
 
 ## Getting Started
 
-There is a PowerShell module to manage PsBuildTasks and helps with it's installation.
-Get it with `Install-Module -Name PsBuildTasks` from from [PsGallery](https://www.powershellgallery.com/packages/PsBuildTasks).
-The next step depends on your project.
+The PsBuildTasks PowerShell module helps install and manage PsBuildTasks.
+Install it with `Install-Module -Name PsBuildTasks` from [PsGallery](https://www.powershellgallery.com/packages/PsBuildTasks).
+Choose a task template based on your project's language and supported platforms:
 
-1. If your project is written in PowerShell or DotNet/C#.
-2. If your project supports only Windows or is cross platform and requires matrix tests on Windows and Linux.
+- Cross-platform PowerShell module: use [PowerShell-Matrix](./tasks/PowerShell-Matrix.Tasks.ps1) for Windows and Linux matrix tests.
+- Windows-only PowerShell module: use [PowerShell-Windows](./tasks/PowerShell-Windows.Tasks.ps1).
+- .NET/C# module: use [Dotnet-Matrix](./tasks/Dotnet-Matrix.Tasks.ps1).
 
-There are container tasks that update multiple features of PsBuildTasks
+See the [InvokeBuild task guide](./tasks/Readme.md) for setup details. The module's container tasks can then update the build, workflow, and other PsBuildTasks files.
 
 ### PowerShell Matrix
 
@@ -69,17 +70,70 @@ New-Item src/Public -ItemType Directory
 New-Item test -ItemType Directory
 ```
 
-## Update development version
+### PowerShell Windows-only
 
-You can update PsBuildTasks to:
+For a Windows-only module, install the Windows container task and use it to update the project files:
 
-the latest stable version using:
+```powershell
+Import-Module -Name PsBuildTasks
+Install-PsBuildTask -Path . -Task PowerShell-Windows
+$ModuleName = ( Get-Location | Get-Item ).Name
+Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
+```
+
+Create `.build.ps1` with the same PowerShell configuration shown above: set `$ModuleName`, dot-source `tasks/Build.Tasks.ps1` and `tasks/PsBuild.Tasks.ps1`, and define the dependency tasks.
+
+### .NET/C#
+
+The .NET build tasks expect the project under `src/<ModuleName>` and the published output to contain `<ModuleName>.psd1`. Place the manifest beside the project file and configure the project to copy it to publish output. For example, add this to `<ModuleName>.csproj`:
+
+```xml
+<ItemGroup>
+  <None Update="MyModuleName.psd1">
+    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+  </None>
+</ItemGroup>
+```
+
+Replace `MyModuleName` with the module name. Install the .NET matrix task and update the project task files:
+
+```powershell
+Import-Module -Name PsBuildTasks
+Install-PsBuildTask -Path . -Task Dotnet-Matrix
+$ModuleName = ( Get-Location | Get-Item ).Name
+Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
+```
+
+Create `.build.ps1` with the required module name and build configuration, and define the dependency tasks:
+
+```powershell
+[CmdletBinding()]
+param (
+    [int] $BuildNumber,
+    [string] $Configuration = 'Release'
+)
+
+$ModuleName = 'MyModuleName' # Replace with the module name and src subdirectory.
+
+. $PSScriptRoot/tasks/Build.Tasks.ps1
+. $PSScriptRoot/tasks/PsBuild.Tasks.ps1
+
+task InstallBuildDependencies {
+    Install-Module platyPs -Scope CurrentUser
+}
+task InstallTestDependencies {}
+task InstallReleaseDependencies {}
+```
+
+## Update PsBuildTasks
+
+These commands update the PsBuildTasks build, workflow, and supporting template files in your project; they do not update the installed PsBuildTasks PowerShell module. The update tasks use the `main` branch by default. To update your project files from `main`, run:
 
 ```powershell
 Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks; Invoke-Build  -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
 ```
 
-a branch of choice using:
+To use a different branch, set `$PsBuildTaskBranch` before running the update tasks:
 
 ```powershell
 $PsBuildTaskBranch = 'develop'; Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks; Invoke-Build  -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks

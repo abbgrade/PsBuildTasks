@@ -46,7 +46,7 @@ Accept wildcard characters: False
 ```
 
 ### -Task
-Name of the task file to install.
+Name of the task file to install: `PowerShell-Matrix`, `PowerShell-Windows`, or `Dotnet-Matrix`.
 
 ```yaml
 Type: String
