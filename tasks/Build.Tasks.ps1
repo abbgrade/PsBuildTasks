@@ -25,7 +25,7 @@ task Import.platyPs -Jobs {
 }
 
 # Synopsis: Initialize the documentation directory.
-task Doc.Init.Directory -If { $DocumentationDirectory.Exists -eq $false} -Jobs {
+task Doc.Init.Directory -If { $DocumentationDirectory.Exists -eq $false } -Jobs {
 	New-Item $DocumentationDirectory -ItemType Directory
 }
 

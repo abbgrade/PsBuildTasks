@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Build validation workflows now run on Dependabot branches and can be started manually.
+- Documented GitHub Actions workflow triggers, configuration, and setup in the GitHub README.
+- Expanded the root and task-guide READMEs with PowerShell Windows-only and .NET setup instructions.
+
+### Added
+
+- Added the `PowerShell-Windows` template to the `Install-PsBuildTask` command.
+
 ## [1.14.5] - 2026-01-02
 
 ### Fixed

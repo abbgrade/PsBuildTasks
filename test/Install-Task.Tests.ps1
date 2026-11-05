@@ -7,26 +7,82 @@ Describe Install-Task {
     }
 
     It exists {
-        Get-Command -Module PsBuildTasks -Name Install-PsBuildTask -ErrorAction Stop
+        # Act
+        $command = Get-Command -Module PsBuildTasks -Name Install-PsBuildTask -ErrorAction Stop
+
+        # Assert
+        $command | Should -Not -BeNullOrEmpty
     }
 
     It PowerShell-Matrix {
-        Install-PsBuildTask -Path "TestDrive:\" -Task PowerShell-Matrix -ErrorAction Stop
-        "TestDrive:\tasks\PsBuild.Tasks.ps1" | Should -Exist
+        # Arrange
+        $projectPath = "TestDrive:\PowerShell-Matrix"
+        New-Item -ItemType Directory -Path $projectPath | Out-Null
+
+        # Act
+        Install-PsBuildTask -Path $projectPath -Task PowerShell-Matrix -ErrorAction Stop
+
+        # Assert
+        "$projectPath\tasks\PsBuild.Tasks.ps1" | Should -Exist
     }
 
     It Dotnet-Matrix {
-        Install-PsBuildTask -Path "TestDrive:\" -Task Dotnet-Matrix -ErrorAction Stop
-        "TestDrive:\tasks\PsBuild.Tasks.ps1" | Should -Exist
+        # Arrange
+        $projectPath = "TestDrive:\Dotnet-Matrix"
+        New-Item -ItemType Directory -Path $projectPath | Out-Null
+
+        # Act
+        Install-PsBuildTask -Path $projectPath -Task Dotnet-Matrix -ErrorAction Stop
+
+        # Assert
+        "$projectPath\tasks\PsBuild.Tasks.ps1" | Should -Exist
+    }
+
+    It PowerShell-Windows {
+        # Arrange
+        $projectPath = "TestDrive:\PowerShell-Windows"
+        New-Item -ItemType Directory -Path $projectPath | Out-Null
+
+        # Act
+        Install-PsBuildTask -Path $projectPath -Task PowerShell-Windows -ErrorAction Stop
+
+        # Assert
+        "$projectPath\tasks\PsBuild.Tasks.ps1" | Should -Exist
     }
 
     It PowerShell-Matrix-Commit {
-        Install-PsBuildTask -Path "TestDrive:\" -Task PowerShell-Matrix -Commit 'fb0767a258df19fb95f75f5cd96e14cc43e37bf8' -ErrorAction Stop
-        "TestDrive:\tasks\PsBuild.Tasks.ps1" | Should -Exist
+        # Arrange
+        $projectPath = "TestDrive:\PowerShell-Matrix-Commit"
+        New-Item -ItemType Directory -Path $projectPath | Out-Null
+
+        # Act
+        Install-PsBuildTask -Path $projectPath -Task PowerShell-Matrix -Commit 'fb0767a258df19fb95f75f5cd96e14cc43e37bf8' -ErrorAction Stop
+
+        # Assert
+        "$projectPath\tasks\PsBuild.Tasks.ps1" | Should -Exist
     }
 
     It Dotnet-Matrix-Commit {
-        Install-PsBuildTask -Path "TestDrive:\" -Task Dotnet-Matrix -Commit 'fb0767a258df19fb95f75f5cd96e14cc43e37bf8' -ErrorAction Stop
-        "TestDrive:\tasks\PsBuild.Tasks.ps1" | Should -Exist
+        # Arrange
+        $projectPath = "TestDrive:\Dotnet-Matrix-Commit"
+        New-Item -ItemType Directory -Path $projectPath | Out-Null
+
+        # Act
+        Install-PsBuildTask -Path $projectPath -Task Dotnet-Matrix -Commit 'fb0767a258df19fb95f75f5cd96e14cc43e37bf8' -ErrorAction Stop
+
+        # Assert
+        "$projectPath\tasks\PsBuild.Tasks.ps1" | Should -Exist
+    }
+
+    It PowerShell-Windows-Commit {
+        # Arrange
+        $projectPath = "TestDrive:\PowerShell-Windows-Commit"
+        New-Item -ItemType Directory -Path $projectPath | Out-Null
+
+        # Act
+        Install-PsBuildTask -Path $projectPath -Task PowerShell-Windows -Commit 'f498fc9dd313bf7d33de67e15e205a7170562af0' -ErrorAction Stop
+
+        # Assert
+        "$projectPath\tasks\PsBuild.Tasks.ps1" | Should -Exist
     }
 }

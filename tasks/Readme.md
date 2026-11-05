@@ -51,7 +51,9 @@ task UpdateBuildTasks {
 
 To update all build tasks, add and use one of the following task:
 
-### PowerShell
+### PowerShell Matrix
+
+Use this container task for PowerShell modules that support Windows and Linux:
 
 ```powershell
 task UpdatePsBuildTasksTasks {
@@ -61,7 +63,21 @@ task UpdatePsBuildTasksTasks {
 }
 ```
 
+### PowerShell Windows-only
+
+Use this container task for PowerShell modules that only support Windows:
+
+```powershell
+task UpdatePsBuildTasksTasks {
+    Invoke-WebRequest `
+        -Uri 'https://raw.githubusercontent.com/abbgrade/PsBuildTasks/main/tasks/PowerShell-Windows.Tasks.ps1' `
+        -OutFile "$PSScriptRoot\tasks\PsBuild.Tasks.ps1"
+}
+```
+
 ### DotNet
+
+Use this container task for DotNet modules that support Windows and Linux:
 
 ```powershell
 task UpdatePsBuildTasksTasks {

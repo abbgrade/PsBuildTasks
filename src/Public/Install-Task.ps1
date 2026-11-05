@@ -18,7 +18,7 @@ function Install-Task {
 
         # Name of the task file to install.
         [Parameter( Mandatory )]
-        [ValidateSet('PowerShell-Matrix', 'Dotnet-Matrix')]
+        [ValidateSet('PowerShell-Matrix', 'PowerShell-Windows', 'Dotnet-Matrix')]
         [string] $Task,
 
         # Specifies a revision by commit id.
