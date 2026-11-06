@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Documentation generation now uses the `en-US` locale for consistent output.
+
 ## [1.15.0] - 2026-11-05
 
 ### Changed

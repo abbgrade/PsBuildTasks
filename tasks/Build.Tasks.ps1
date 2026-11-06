@@ -31,11 +31,13 @@ task Doc.Init.Directory -If { $DocumentationDirectory.Exists -eq $false } -Jobs 
 
 # Synopsis: Initialize the documentation.
 task Doc.Init -Jobs Import, Import.platyPs, Doc.Init.Directory, {
-    New-MarkdownHelp -Module $ModuleName -OutputFolder $DocumentationDirectory -Force:$ForceDocInit -ErrorAction Continue
+	[System.Threading.Thread]::CurrentThread.CurrentUICulture = [System.Globalization.CultureInfo]::GetCultureInfo('en-US')
+    New-MarkdownHelp -Module $ModuleName -OutputFolder $DocumentationDirectory -Locale 'en-US' -Force:$ForceDocInit -ErrorAction Continue
 }
 
 # Synopsis: Update the markdown documentation.
 task Doc.Update -Jobs Import, Import.platyPs, Doc.Init, {
+	[System.Threading.Thread]::CurrentThread.CurrentUICulture = [System.Globalization.CultureInfo]::GetCultureInfo('en-US')
     Update-MarkdownHelp -Path $DocumentationDirectory
 }
 
