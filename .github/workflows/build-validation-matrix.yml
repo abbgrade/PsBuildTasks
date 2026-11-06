@@ -1,5 +1,11 @@
 on:
   workflow_call:
+    inputs:
+      verbose:
+        description: Show PowerShell verbose output from tested code
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -58,6 +64,8 @@ jobs:
 
       - name: Test module
         shell: pwsh
+        env:
+          SHOW_VERBOSE_OUTPUT: ${{ inputs.verbose }}
         run: |
             $config = New-PesterConfiguration
             $config.Run.Path = 'test'
@@ -65,4 +73,5 @@ jobs:
             $config.Output.CIFormat = 'GithubActions'
             $config.CodeCoverage.Enabled = $true
             $config.CodeCoverage.Path = 'src'
+            $VerbosePreference = if ($env:SHOW_VERBOSE_OUTPUT -eq 'true') { 'Continue' } else { 'SilentlyContinue' }
             Invoke-Pester -Configuration $config

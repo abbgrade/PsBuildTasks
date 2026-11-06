@@ -22,6 +22,8 @@ It depends on a convention for branch names. These are based on the default sett
 
 Both validation workflows run on pushes to `develop`, `bugfix/*`, `feature/*`, `release/*`, and `dependabot/*`, on pull requests targeting `develop`, and when manually started from the Actions tab.
 
+When manually starting either validation workflow, use the `verbose` option to choose whether PowerShell `Write-Verbose` messages from tested code are shown. It is disabled by default.
+
 Add the following task to your `.build.ps1` file to create/update the matrix validation workflow:
 
 ```powershell
