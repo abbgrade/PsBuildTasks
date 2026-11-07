@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added separate VS Code tasks for unit and integration tests.
 - Added a manual workflow option to enable or disable verbose output from tested code.
 
 ## [1.15.2] - 2026-11-06
