@@ -1,9 +1,24 @@
 on:
+  # Runs on pushes targeting branches following git-flow naming convention
   push:
-    branches: [ develop, bugfix/*, feature/*, release/* ]
+    branches: [ develop, bugfix/*, feature/*, release/*, dependabot/* ]
+
+  # Runs on pull requests targeting the develop branch
   pull_request:
     branches: [ develop ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      verbose:
+        description: Show PowerShell verbose output from tested code
+        required: false
+        type: boolean
+        default: false
+
 jobs:
+  # Delegate the matrix build validation to the reusable workflow
   build-validation:
-    uses: abbgrade/PsBuildTasks/.github/workflows/build-validation-matrix.yml@1.14.5
+    uses: ./.github/workflows/build-validation-matrix.yml
+    with:
+      verbose: ${{ inputs.verbose == true }}
