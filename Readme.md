@@ -1,5 +1,7 @@
 # Readme
 
+[![.github/workflows/build-validation.yml](https://github.com/abbgrade/PsBuildTasks/actions/workflows/build-validation.yml/badge.svg)](https://github.com/abbgrade/PsBuildTasks/actions/workflows/build-validation.yml)
+
 PsBuildTasks provides reusable sources for build, test, release automation of PowerShell modules, written in DotNet/C# or PowerShell.
 
 This includes:
