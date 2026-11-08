@@ -86,3 +86,16 @@ task UpdatePsBuildTasksTasks {
         -OutFile "$PSScriptRoot\tasks\PsBuild.Tasks.ps1"
 }
 ```
+
+## GitHub Copilot
+
+The task templates also provide an `UpdateCopilot` task for copying shared instructions, agents, and skills into `.github`. It runs as part of `UpdatePsBuildTasks` and can also be run on its own.
+
+Refresh the project-specific container task first, then run the Copilot update task:
+
+```powershell
+Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks
+Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdateCopilot
+```
+
+Only files managed by PsBuildTasks are overwritten; unrelated files under `.github/instructions`, `.github/agents`, and `.github/skills` are left untouched.

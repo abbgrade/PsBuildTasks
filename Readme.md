@@ -2,13 +2,14 @@
 
 [![.github/workflows/build-validation.yml](https://github.com/abbgrade/PsBuildTasks/actions/workflows/build-validation.yml/badge.svg)](https://github.com/abbgrade/PsBuildTasks/actions/workflows/build-validation.yml)
 
-PsBuildTasks provides reusable sources for build, test, release automation of PowerShell modules, written in DotNet/C# or PowerShell.
+PsBuildTasks helps keep the shared build, test, and release boilerplate in sync across PowerShell module projects. Install its task and workflow templates into each project, then use the update tasks to refresh those shared files as they evolve. It supports modules written in PowerShell or .NET/C#.
 
 This includes:
 
 - [InvokeBuild](https://github.com/nightroman/Invoke-Build) tasks. [Details](./tasks/Readme.md).
 - [GitHub Actions](https://docs.github.com/en/actions) workflows. [Details](./GitHub/Readme.md).
 - [VsCode Tasks](https://code.visualstudio.com/docs/editor/tasks) workflows. [Details](./VsCode/Readme.md).
+- [GitHub Copilot instructions, agents, and skills](./tasks/Readme.md#github-copilot-files) that can be copied into consuming projects and updated independently.
 - A PowerShell module for installation and updates. See [the command reference](./docs/) for descriptions and examples.
 
 For details, visit the [GitHub Pages](https://abbgrade.github.io/PsBuildTasks/).
@@ -127,19 +128,32 @@ task InstallTestDependencies {}
 task InstallReleaseDependencies {}
 ```
 
-## Update PsBuildTasks
+## Keep project boilerplate in sync
 
-These commands update the PsBuildTasks build, workflow, and supporting template files in your project; they do not update the installed PsBuildTasks PowerShell module. The update tasks use the `main` branch by default. To update your project files from `main`, run:
+Each project contains its own copies of the shared task and supporting files. Run these commands in a project to refresh those files from the PsBuildTasks repository; they do not update the installed PsBuildTasks PowerShell module. Review the changes because project files may be overwritten. The update tasks use the `main` branch by default. To update your project files from `main`, run:
 
 ```powershell
 Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks; Invoke-Build  -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
 ```
 
-To use a different branch, set `$PsBuildTaskBranch` before running the update tasks:
+To use a different branch, set `$PsBuildTasksBranch` before running the update tasks:
 
 ```powershell
-$PsBuildTaskBranch = 'develop'; Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks; Invoke-Build  -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
+$PsBuildTasksBranch = 'develop'; Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks; Invoke-Build  -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
 ```
+
+### GitHub Copilot files
+
+Each task template provides an `UpdateCopilot` task that copies shared files into `.github/instructions/`, `.github/agents/`, and `.github/skills/`. It runs as part of `UpdatePsBuildTasks` and can also be run on its own.
+
+First refresh the project-specific container task, then run the Copilot update task:
+
+```powershell
+Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks
+Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdateCopilot
+```
+
+The task overwrites the files managed by PsBuildTasks and leaves unrelated Copilot files untouched. Review the changes before committing them.
 
 ## Changelog
 
