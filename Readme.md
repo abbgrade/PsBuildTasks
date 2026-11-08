@@ -9,6 +9,7 @@ This includes:
 - [InvokeBuild](https://github.com/nightroman/Invoke-Build) tasks. [Details](./tasks/Readme.md).
 - [GitHub Actions](https://docs.github.com/en/actions) workflows. [Details](./GitHub/Readme.md).
 - [VsCode Tasks](https://code.visualstudio.com/docs/editor/tasks) workflows. [Details](./VsCode/Readme.md).
+- [GitHub Copilot instructions, agents, and skills](./tasks/Readme.md#github-copilot-files) that can be copied into consuming projects and updated independently.
 - A PowerShell module for installation and updates. See [the command reference](./docs/) for descriptions and examples.
 
 For details, visit the [GitHub Pages](https://abbgrade.github.io/PsBuildTasks/).
@@ -140,6 +141,19 @@ To use a different branch, set `$PsBuildTaskBranch` before running the update ta
 ```powershell
 $PsBuildTaskBranch = 'develop'; Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks; Invoke-Build  -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
 ```
+
+### GitHub Copilot files
+
+Each task template provides an `UpdateCopilot` task that copies shared files into `.github/instructions/`, `.github/agents/`, and `.github/skills/`. It runs as part of `UpdatePsBuildTasks` and can also be run on its own.
+
+First refresh the project-specific container task, then run the Copilot update task:
+
+```powershell
+Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks
+Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdateCopilot
+```
+
+The task overwrites the files managed by PsBuildTasks and leaves unrelated Copilot files untouched. Review the changes before committing them.
 
 ## Changelog
 
