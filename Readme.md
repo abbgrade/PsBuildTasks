@@ -2,7 +2,7 @@
 
 [![.github/workflows/build-validation.yml](https://github.com/abbgrade/PsBuildTasks/actions/workflows/build-validation.yml/badge.svg)](https://github.com/abbgrade/PsBuildTasks/actions/workflows/build-validation.yml)
 
-PsBuildTasks provides reusable sources for build, test, release automation of PowerShell modules, written in DotNet/C# or PowerShell.
+PsBuildTasks helps keep the shared build, test, and release boilerplate in sync across PowerShell module projects. Install its task and workflow templates into each project, then use the update tasks to refresh those shared files as they evolve. It supports modules written in PowerShell or .NET/C#.
 
 This includes:
 
@@ -127,9 +127,9 @@ task InstallTestDependencies {}
 task InstallReleaseDependencies {}
 ```
 
-## Update PsBuildTasks
+## Keep project boilerplate in sync
 
-These commands update the PsBuildTasks build, workflow, and supporting template files in your project; they do not update the installed PsBuildTasks PowerShell module. The update tasks use the `main` branch by default. To update your project files from `main`, run:
+Each project contains its own copies of the shared task and supporting files. Run these commands in a project to refresh those files from the PsBuildTasks repository; they do not update the installed PsBuildTasks PowerShell module. Review the changes because project files may be overwritten. The update tasks use the `main` branch by default. To update your project files from `main`, run:
 
 ```powershell
 Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks; Invoke-Build  -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
