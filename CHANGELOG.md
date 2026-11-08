@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added `UpdateCopilot` tasks and shared Copilot instructions, agent, and skills templates.
+
 ## [1.16.1] - 2026-11-08
 
 ### Fixed

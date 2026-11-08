@@ -87,6 +87,30 @@ task UpdateVsCodeTasks {
 }
 
 #endregion
+#region GitHub Copilot
+
+task UpdateCopilot {
+    $files = @(
+        @{ Source = 'Copilot/instructions/readme.instructions.md'; Target = '.github/instructions/readme.instructions.md' }
+        @{ Source = 'Copilot/instructions/powershell.instructions.md'; Target = '.github/instructions/powershell.instructions.md' }
+        @{ Source = 'Copilot/instructions/powershell-functions.instructions.md'; Target = '.github/instructions/powershell-functions.instructions.md' }
+        @{ Source = 'Copilot/instructions/pester-tests.instructions.md'; Target = '.github/instructions/pester-tests.instructions.md' }
+        @{ Source = 'Copilot/agents/powershell-refactor.agent.md'; Target = '.github/agents/powershell-refactor.agent.md' }
+        @{ Source = 'Copilot/skills/powershell-refactoring/SKILL.md'; Target = '.github/skills/powershell-refactoring/SKILL.md' }
+        @{ Source = 'Copilot/skills/psbuildtasks-skill/SKILL.md'; Target = '.github/skills/psbuildtasks-skill/SKILL.md' }
+    )
+    $projectRoot = Join-Path $PSScriptRoot '..'
+
+    foreach ($file in $files) {
+        $target = Join-Path $projectRoot $file.Target
+        New-Item -ItemType Directory -Path (Split-Path $target -Parent) -Force | Out-Null
+        Invoke-WebRequest `
+            -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTaskBranch/$($file.Source)" `
+            -OutFile $target
+    }
+}
+
+#endregion
 #region PsBuildTasks
 
 task UpdatePsBuildTasksTasks {
@@ -108,4 +132,4 @@ task UpdateModuleFile {
 
 #endregion
 
-task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateWorkflows, UpdateIndexPage, UpdateVsCodeTasks, UpdatePsBuildTasksTasks, UpdateModuleFile
+task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateWorkflows, UpdateIndexPage, UpdateVsCodeTasks, UpdatePsBuildTasksTasks, UpdateModuleFile, UpdateCopilot
