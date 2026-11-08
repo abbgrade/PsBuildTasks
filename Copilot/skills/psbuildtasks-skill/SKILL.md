@@ -47,6 +47,11 @@ Use this when the project already has PsBuildTasks task files:
 1. Run `UpdatePsBuildTasks` to refresh project build tasks and the supporting files included by that template.
 2. If the container task is missing or needs refreshing, run `UpdatePsBuildTasksTasks` first, then `UpdatePsBuildTasks`. The aggregate update behavior and included files vary by template.
 3. For an individual component, use its specific task (for example `UpdateBuildTasks` or `UpdateVsCodeTasks`) rather than refreshing everything. Check the template and review overwritten files.
+4. To update from a non-default branch, pass the branch parameter declared by the project's `.build.ps1`. In the standard template, use:
+   ```powershell
+   Invoke-Build UpdatePsBuildTasks -PsBuildTaskBranch feature/copilot-task
+   ```
+   If the project uses a different parameter name, use that name and ensure `.build.ps1` assigns it to `$PsBuildTaskBranch`, which the update tasks read.
 
 ### Use the Installed Tasks
 
