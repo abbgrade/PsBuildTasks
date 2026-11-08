@@ -14,6 +14,7 @@ Rules:
 
 Structure:
 - Put tests in appropriate nested `Context` blocks; do not create empty blocks.
+- Within each `Describe` or `Context` block, place all `BeforeAll`, `BeforeEach`, `AfterEach`, and `AfterAll` blocks before that scope's `It` blocks.
 - Use the unquoted `Context UnitTests -Tag UnitTest {` form for fast tests that do not depend on external services or Docker.
 - Use the unquoted `Context IntegrationTests -Tag IntegrationTest {` form for tests that exercise Docker, external services, or other system-level integrations.
 - Do not add untagged Pester tests.
