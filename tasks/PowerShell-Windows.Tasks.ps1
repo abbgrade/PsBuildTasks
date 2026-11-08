@@ -92,6 +92,7 @@ task UpdateVsCodeTasks {
 task UpdateCopilot {
     $files = @(
         @{ Source = 'Copilot/instructions/readme.instructions.md'; Target = '.github/instructions/readme.instructions.md' }
+        @{ Source = 'Copilot/instructions/build-script.instructions.md'; Target = '.github/instructions/build-script.instructions.md' }
         @{ Source = 'Copilot/instructions/powershell.instructions.md'; Target = '.github/instructions/powershell.instructions.md' }
         @{ Source = 'Copilot/instructions/powershell-functions.instructions.md'; Target = '.github/instructions/powershell-functions.instructions.md' }
         @{ Source = 'Copilot/instructions/pester-tests.instructions.md'; Target = '.github/instructions/pester-tests.instructions.md' }
