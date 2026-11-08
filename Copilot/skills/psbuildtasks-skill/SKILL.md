@@ -49,9 +49,9 @@ Use this when the project already has PsBuildTasks task files:
 3. For an individual component, use its specific task (for example `UpdateBuildTasks` or `UpdateVsCodeTasks`) rather than refreshing everything. Check the template and review overwritten files.
 4. To update from a non-default branch, pass the branch parameter declared by the project's `.build.ps1`. In the standard template, use:
    ```powershell
-   Invoke-Build UpdatePsBuildTasks -PsBuildTaskBranch feature/copilot-task
+   Invoke-Build UpdatePsBuildTasks -PsBuildTasksBranch feature/copilot-task
    ```
-   If the project uses a different parameter name, use that name and ensure `.build.ps1` assigns it to `$PsBuildTaskBranch`, which the update tasks read.
+   If the project uses a different parameter name, use that name and ensure `.build.ps1` assigns it to `$PsBuildTasksBranch`, which the update tasks read.
 
 ### Use the Installed Tasks
 

@@ -136,10 +136,10 @@ Each project contains its own copies of the shared task and supporting files. Ru
 Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks; Invoke-Build  -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
 ```
 
-To use a different branch, set `$PsBuildTaskBranch` before running the update tasks:
+To use a different branch, set `$PsBuildTasksBranch` before running the update tasks:
 
 ```powershell
-$PsBuildTaskBranch = 'develop'; Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks; Invoke-Build  -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
+$PsBuildTasksBranch = 'develop'; Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasksTasks; Invoke-Build  -File .\tasks\PsBuild.Tasks.ps1 -Task UpdatePsBuildTasks
 ```
 
 ### GitHub Copilot files

@@ -5,7 +5,7 @@ param (
     [int] $BuildNumber,
 
     [Parameter()]
-    [string] $PsBuildTaskBranch
+    [string] $PsBuildTasksBranch
 )
 
 $ModuleName = 'PsBuildTasks'
