@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.16.1] - 2026-11-08
+
+### Fixed
+
+- Updated VS Code documentation tasks to use the `Doc.Update` build task.
+
 ## [1.16.0] - 2026-11-07
 
 ### Added
