@@ -110,6 +110,7 @@ task UpdateCopilot {
         @{ Source = 'Copilot/instructions/powershell-functions.instructions.md'; Target = '.github/instructions/powershell-functions.instructions.md' }
         @{ Source = 'Copilot/instructions/pester-tests.instructions.md'; Target = '.github/instructions/pester-tests.instructions.md' }
         @{ Source = 'Copilot/agents/powershell-refactor.agent.md'; Target = '.github/agents/powershell-refactor.agent.md' }
+        @{ Source = 'Copilot/skills/bump-version/SKILL.md'; Target = '.github/skills/bump-version/SKILL.md' }
         @{ Source = 'Copilot/skills/powershell-refactoring/SKILL.md'; Target = '.github/skills/powershell-refactoring/SKILL.md' }
         @{ Source = 'Copilot/skills/psbuildtasks-skill/SKILL.md'; Target = '.github/skills/psbuildtasks-skill/SKILL.md' }
     )
