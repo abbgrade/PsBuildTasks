@@ -87,6 +87,17 @@ task UpdatePsBuildTasksTasks {
 }
 ```
 
+## Architecture Decision Records
+
+The task templates provide `UpdateAdrTemplate` to copy the shared ADR template to
+`adr/adr-template.md` in the consuming project. It creates the `adr` directory when needed
+and overwrites an existing template. The task runs as part of `UpdatePsBuildTasks` and can
+also be run on its own:
+
+```powershell
+Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdateAdrTemplate
+```
+
 ## GitHub Copilot
 
 The task templates also provide an `UpdateCopilot` task for copying shared instructions, agents, and skills into `.github`. It runs as part of `UpdatePsBuildTasks` and can also be run on its own.
