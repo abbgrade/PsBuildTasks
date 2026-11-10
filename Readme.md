@@ -155,6 +155,10 @@ Invoke-Build -File .\tasks\PsBuild.Tasks.ps1 -Task UpdateCopilot
 
 The task overwrites the files managed by PsBuildTasks and leaves unrelated Copilot files untouched. Review the changes before committing them.
 
+## Architecture Decision Records
+
+See the [architecture decision records](./adr/README.md) for the reasoning behind key project design choices.
+
 ## Changelog
 
 See the [changelog](./CHANGELOG.md) file.
