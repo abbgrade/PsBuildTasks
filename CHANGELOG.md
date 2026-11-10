@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added shared ADR guidance and an `UpdateAdrTemplate` task to distribute the ADR template to consuming projects.
+
 ## [1.17.0] - 2026-11-08
 
 ### Added

@@ -87,12 +87,24 @@ task UpdateVsCodeTasks {
 }
 
 #endregion
+#region Architecture Decision Records
+
+task UpdateAdrTemplate {
+    [System.IO.FileInfo] $file = "$PSScriptRoot\..\adr\adr-template.md"
+    New-Item -ItemType Directory $file.Directory -Force | Out-Null
+    Invoke-WebRequest `
+        -Uri "https://raw.githubusercontent.com/abbgrade/PsBuildTasks/$PsBuildTasksBranch/adr/adr-template.md" `
+        -OutFile $file
+}
+
+#endregion
 #region GitHub Copilot
 
 task UpdateCopilot {
     $files = @(
         @{ Source = 'Copilot/instructions/readme.instructions.md'; Target = '.github/instructions/readme.instructions.md' }
         @{ Source = 'Copilot/instructions/changelog.instructions.md'; Target = '.github/instructions/changelog.instructions.md' }
+        @{ Source = 'Copilot/instructions/adr.instructions.md'; Target = '.github/instructions/adr.instructions.md' }
         @{ Source = 'Copilot/instructions/build-script.instructions.md'; Target = '.github/instructions/build-script.instructions.md' }
         @{ Source = 'Copilot/instructions/powershell.instructions.md'; Target = '.github/instructions/powershell.instructions.md' }
         @{ Source = 'Copilot/instructions/powershell-functions.instructions.md'; Target = '.github/instructions/powershell-functions.instructions.md' }
@@ -134,4 +146,4 @@ task UpdateModuleFile {
 
 #endregion
 
-task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateWorkflows, UpdateIndexPage, UpdateVsCodeTasks, UpdatePsBuildTasksTasks, UpdateModuleFile, UpdateCopilot
+task UpdatePsBuildTasks -Jobs UpdateBuildTasks, UpdateWorkflows, UpdateIndexPage, UpdateVsCodeTasks, UpdatePsBuildTasksTasks, UpdateModuleFile, UpdateCopilot, UpdateAdrTemplate
